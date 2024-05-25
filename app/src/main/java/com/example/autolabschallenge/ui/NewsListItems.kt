@@ -70,25 +70,11 @@ fun NewsListScreen(
         viewModel.getNews()
     }
 
-    val context = LocalContext.current
-
-    val speechRecognizerManager = remember {
-        SpeechRecognizerManager(context) { voiceCommand ->
-            viewModel.setVoiceCommand(voiceCommand)
-        }
-    }
-
-    DisposableEffect(Unit) {
-        onDispose {
-            speechRecognizerManager.destroy()
-        }
-    }
-
     if (isLoading) {
         ShowLoading()
     } else {
         if (news.status == "ok") {
-            ShowNewsList(viewModel, news.articles, speechRecognizerManager, navController)
+            ShowNewsList(viewModel, news.articles, navController)
         } else {
             Text(text = "No places found")
         }
@@ -100,7 +86,6 @@ fun NewsListScreen(
 fun ShowNewsList(
     viewModel: ShowNewsViewModel = hiltViewModel(),
     articles: List<ArticlesModel>,
-    speechRecognizerManager: SpeechRecognizerManager,
     navController: NavController
 ) {
     Box(
@@ -127,34 +112,6 @@ fun ShowNewsList(
                     }
                 }
             }
-        }
-        FloatingActionButton(
-            onClick = { },
-            containerColor = Purple40,
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(bottom = 48.dp, end = 48.dp)
-                .pointerInteropFilter {
-                    when (it.action) {
-                        MotionEvent.ACTION_DOWN -> {
-                            speechRecognizerManager.startListening()
-                            true
-                        }
-
-                        MotionEvent.ACTION_UP -> {
-                            speechRecognizerManager.stopListening()
-                            true
-                        }
-
-                        else -> false
-                    }
-                },
-        ) {
-            Icon(
-                imageVector = ImageVector.vectorResource(id = R.drawable.ic_microphone),
-                contentDescription = null,
-                tint = Color.White
-            )
         }
     }
 }

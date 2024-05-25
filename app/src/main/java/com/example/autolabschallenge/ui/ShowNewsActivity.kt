@@ -42,6 +42,9 @@ class ShowNewsActivity : ComponentActivity() {
                 Scaffold(
                     topBar = {
                         ComposeAppBar(getString(R.string.news))
+                    },
+                    floatingActionButton = {
+                        SpeechButton(viewModel)
                     }
                 ) { paddingValues ->
                     Surface(
