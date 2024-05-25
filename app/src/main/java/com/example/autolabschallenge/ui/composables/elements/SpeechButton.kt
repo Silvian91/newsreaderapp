@@ -1,4 +1,4 @@
-package com.example.autolabschallenge.ui
+package com.example.autolabschallenge.ui.composables.elements
 
 import SpeechRecognizerManager
 import android.view.MotionEvent
@@ -18,6 +18,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.autolabschallenge.R
+import com.example.autolabschallenge.ui.ShowNewsViewModel
 import com.example.autolabschallenge.ui.theme.Purple40
 
 @OptIn(ExperimentalComposeUiApi::class)

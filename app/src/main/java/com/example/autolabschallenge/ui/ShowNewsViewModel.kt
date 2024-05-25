@@ -2,6 +2,8 @@ package com.example.autolabschallenge.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.autolabschallenge.R
+import com.example.autolabschallenge.data.ResourceProvider
 import com.example.autolabschallenge.data.model.ArticlesModel
 import com.example.autolabschallenge.data.model.NewsModel
 import com.example.autolabschallenge.data.model.SourceModel
@@ -15,42 +17,33 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ShowNewsViewModel @Inject constructor(
-    private val getNewsUseCase: GetNewsUseCase
+    private val getNewsUseCase: GetNewsUseCase,
+    private val resourceProvider: ResourceProvider
 ): ViewModel() {
 
-    val defaultNewsModel = NewsModel(
-        status = "",
-        articles = emptyList()
-    )
+    private val _newsList = MutableStateFlow<NewsModel?>(null)
+    val newsList: StateFlow<NewsModel?> get() = _newsList
 
-    val defaultArticlesModel = ArticlesModel(
-        source = SourceModel(""),
-        author = null,
-        title = "",
-        description = "",
-        url = "",
-        urlToImage = null,
-        publishedAt = "",
-        content = ""
-    )
-
-    private val _newsList = MutableStateFlow<NewsModel>(defaultNewsModel)
-    val newsList: StateFlow<NewsModel> get() = _newsList.asStateFlow()
-
-    private val _newsArticle = MutableStateFlow<ArticlesModel>(defaultArticlesModel)
-    val newsArticle: StateFlow<ArticlesModel> get() = _newsArticle
+    private val _newsArticle = MutableStateFlow<ArticlesModel?>(null)
+    val newsArticle: StateFlow<ArticlesModel?> get() = _newsArticle
 
     private val _isLoading = MutableStateFlow(true)
-    val isLoading: StateFlow<Boolean> get() = _isLoading.asStateFlow()
-
+    val isLoading: StateFlow<Boolean> get() = _isLoading
 
     private val _voiceCommand = MutableStateFlow<String?>(null)
     val voiceCommand: StateFlow<String?> get() = _voiceCommand
 
     suspend fun getNews() {
-        _isLoading.value = true
-        _newsList.value = getNewsUseCase()
-        _isLoading.value = false
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                _newsList.value = getNewsUseCase()
+            } catch (e: Exception) {
+                resourceProvider.getString(R.string.error_internet_connection)
+            }
+            _isLoading.value = false
+
+        }
     }
 
     fun setArticle(article: ArticlesModel) {

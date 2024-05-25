@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">autolabschallenge</string>
     <string name="news">News</string>
+    <string name="error_get_news">An error has occurred fetching the news</string>
+    <string name="retry">Retry</string>
+    <string name="error_internet_connection">Failed to fetch news. Please check your internet connection.</string>
+    <string name="ok">ok</string>
+    <string name="error">error</string>
+    <string name="error_no_news">It looks like there are no news to display at the moment</string>
 </resources>

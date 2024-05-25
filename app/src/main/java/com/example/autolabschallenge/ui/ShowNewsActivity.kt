@@ -1,6 +1,5 @@
 package com.example.autolabschallenge.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,14 +17,13 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Green
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.autolabschallenge.R
+import com.example.autolabschallenge.ui.composables.ShowArticleScreen
+import com.example.autolabschallenge.ui.composables.NewsListScreen
+import com.example.autolabschallenge.ui.composables.elements.SpeechButton
 import com.example.autolabschallenge.ui.theme.AutolabschallengeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -59,7 +57,7 @@ class ShowNewsActivity : ComponentActivity() {
                                 NewsListScreen(navController, viewModel)
                             }
                             composable("newsDetail") {
-                                NewsDetailScreen(viewModel)
+                                ShowArticleScreen(viewModel)
                             }
                         }
                     }
