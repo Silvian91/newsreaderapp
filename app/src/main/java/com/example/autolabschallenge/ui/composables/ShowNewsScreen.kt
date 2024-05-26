@@ -45,7 +45,7 @@ fun ShowNewsScreen(
                         article.urlToImage?.let {
                             ArticleImage(it)
                         }
-                        ArticleTitle(article.title)
+                        ArticleTitle(article.source.name, article.title)
                     }
                 }
             }
