@@ -1,4 +1,4 @@
-## AutolabsChallenge
+## News Reader App
 An app that displays news articles fetched from newsapi. It includes features like speech recognition to reload the news list and supports 
 sorting news articles by their publication date. The app is built using Jetpack Compose for the UI, Coroutines for async functions, 
 Hilt for dependency injection, and integrates Google's SpeechRecognizer.

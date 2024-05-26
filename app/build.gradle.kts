@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.autolabschallenge"
+    namespace = "com.example.newsreaderapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.autolabschallenge"
+        applicationId = "com.example.newsreaderapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

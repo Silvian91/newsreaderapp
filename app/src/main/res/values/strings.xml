@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">autolabschallenge</string>
+    <string name="app_name">newsreaderapp</string>
     <string name="news">News</string>
     <string name="error_get_news">An error has occurred fetching the news</string>
     <string name="retry">Retry</string>

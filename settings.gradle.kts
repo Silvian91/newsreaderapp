@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "autolabschallenge"
+rootProject.name = "newsreaderapp"
 include(":app")
  
