@@ -21,7 +21,7 @@ coreTesting = "2.2.0"
 coilCompose = "2.6.0"
 playServicesMlkitTextRecognition = "19.0.0"
 foundation = "1.6.7"
-composePreviewRenderer = "0.0.1-alpha01"
+room = "2.4.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -57,9 +57,13 @@ play-services-mlkit-text-recognition = { group = "com.google.android.gms", name 
 
 #Test:
 mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockitoCore" }
-mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockitoCore" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "coreTesting" }
+
+#Room:
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

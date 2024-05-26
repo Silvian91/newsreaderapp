@@ -79,6 +79,9 @@ dependencies {
     implementation(libs.okhttp3)
     implementation(libs.play.services.mlkit.text.recognition)
     implementation(libs.coil.compose)
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.room.ktx)
 
     testImplementation(libs.junit)
     testImplementation(libs.mockito.core)
