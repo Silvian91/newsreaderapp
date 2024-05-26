@@ -56,7 +56,7 @@ class ShowNewsViewModel @Inject constructor(
     fun setVoiceCommand(voiceCommand: String, isFromVoiceCommand: Boolean) {
         viewModelScope.launch {
             if (voiceCommand.equals("reload", ignoreCase = true)) {
-                getNews(isFromVoiceCommand = true)
+                getNews(isFromVoiceCommand)
             }
         }
     }

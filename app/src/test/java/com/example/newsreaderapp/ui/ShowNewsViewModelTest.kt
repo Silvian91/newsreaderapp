@@ -7,6 +7,7 @@ import com.example.newsreaderapp.data.model.ArticlesModel
 import com.example.newsreaderapp.data.model.NewsModel
 import com.example.newsreaderapp.data.model.SourceModel
 import com.example.newsreaderapp.domain.useCase.GetNewsUseCase
+import com.example.newsreaderapp.domain.useCase.LoadNewsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -35,6 +36,9 @@ class ShowNewsViewModelTest {
     private lateinit var getNewsUseCase: GetNewsUseCase
 
     @Mock
+    private lateinit var loadNewsUseCase: LoadNewsUseCase
+
+    @Mock
     private lateinit var resourceProvider: ResourceProvider
 
 
@@ -44,7 +48,7 @@ class ShowNewsViewModelTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         Dispatchers.setMain(testDispatcher)
-        showNewsViewModel = ShowNewsViewModel(getNewsUseCase, resourceProvider)
+        showNewsViewModel = ShowNewsViewModel(getNewsUseCase, loadNewsUseCase, resourceProvider)
     }
 
     @Test
@@ -54,7 +58,7 @@ class ShowNewsViewModelTest {
 
         `when`(getNewsUseCase()).thenReturn(newsModel)
 
-        showNewsViewModel.getNews()
+        showNewsViewModel.getNews(false)
 
         assertEquals(newsModel, showNewsViewModel.newsList.value)
     }
@@ -65,7 +69,7 @@ class ShowNewsViewModelTest {
         `when`(getNewsUseCase()).thenThrow(RuntimeException("Network error"))
         `when`(resourceProvider.getString(R.string.error_internet_connection)).thenReturn(errorMessage)
 
-        showNewsViewModel.getNews()
+        showNewsViewModel.getNews(false)
 
         assertEquals(errorMessage, showNewsViewModel.errorState.value)
         assertFalse(showNewsViewModel.isLoading.value)
