@@ -43,7 +43,7 @@ fun SpeechButton(
         onClick = { },
         containerColor = Purple40,
         modifier = Modifier
-            .padding(bottom = 48.dp, end = 48.dp)
+            .padding(bottom = 28.dp, end = 28.dp)
             .pointerInteropFilter {
                 when (it.action) {
                     MotionEvent.ACTION_DOWN -> {
