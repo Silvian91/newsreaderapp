@@ -2,7 +2,7 @@ package com.example.autolabschallenge.data.model
 
 data class NewsModel(
     val status: String,
-    val articles: List<ArticlesModel>?
+    var articles: List<ArticlesModel>?
 )
 
 data class ArticlesModel(

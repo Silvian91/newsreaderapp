@@ -4,13 +4,12 @@ import com.example.autolabschallenge.data.model.NewsModel
 import com.example.autolabschallenge.data.response.NewsResponse
 import com.example.autolabschallenge.domain.NewsApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito.*
+import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 
 @ExperimentalCoroutinesApi
