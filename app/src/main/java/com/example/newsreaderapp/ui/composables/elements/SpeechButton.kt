@@ -71,7 +71,6 @@ fun SpeechButton(
                             speechRecognizerManager.startListening()
                             true
                         }
-
                         MotionEvent.ACTION_UP -> {
                             speechRecognizerManager.stopListening()
                             true

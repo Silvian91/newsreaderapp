@@ -7,6 +7,7 @@ import com.example.newsreaderapp.data.ResourceProvider
 import com.example.newsreaderapp.data.model.ArticlesModel
 import com.example.newsreaderapp.data.model.NewsModel
 import com.example.newsreaderapp.domain.useCase.GetNewsUseCase
+import com.example.newsreaderapp.domain.useCase.LoadNewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ShowNewsViewModel @Inject constructor(
     private val getNewsUseCase: GetNewsUseCase,
+    private val loadNewsUseCase: LoadNewsUseCase,
     private val resourceProvider: ResourceProvider
 ): ViewModel() {
 
@@ -43,6 +45,19 @@ class ShowNewsViewModel @Inject constructor(
         }
     }
 
+    private suspend fun loadNews() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                _newsList.value = loadNewsUseCase()
+            } catch (e: Exception) {
+                _errorState.value = resourceProvider.getString(R.string.error_internet_connection)
+            }
+            _isLoading.value = false
+        }
+    }
+
+
     fun setArticle(article: ArticlesModel) {
         _newsArticle.value = article
     }
@@ -50,7 +65,7 @@ class ShowNewsViewModel @Inject constructor(
     fun setVoiceCommand(voiceCommand: String) {
         viewModelScope.launch {
             if (voiceCommand.equals("reload", ignoreCase = true)) {
-                getNews()
+                loadNews()
             }
         }
     }
