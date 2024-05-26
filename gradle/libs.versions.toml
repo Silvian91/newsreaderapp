@@ -21,7 +21,7 @@ coreTesting = "2.2.0"
 coilCompose = "2.6.0"
 playServicesMlkitTextRecognition = "19.0.0"
 foundation = "1.6.7"
-room = "2.4.2"
+room = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
