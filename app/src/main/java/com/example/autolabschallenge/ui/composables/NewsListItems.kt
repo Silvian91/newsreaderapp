@@ -29,7 +29,9 @@ fun NewsListScreen(
         news?.let { safeNews ->
             if (safeNews.status == stringResource(R.string.ok) && safeNews.articles != null) {
                 safeNews.articles.let {
-                    ShowNewsScreen(viewModel, it, navController)
+                    if (it != null) {
+                        ShowNewsScreen(viewModel, it, navController)
+                    }
                 }
             } else if (safeNews.status == stringResource(R.string.ok) && safeNews.articles == null) {
                 ErrorScreen(viewModel, stringResource(R.string.error_no_news))

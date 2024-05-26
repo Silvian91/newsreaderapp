@@ -7,4 +7,7 @@
     <string name="ok">ok</string>
     <string name="error">error</string>
     <string name="error_no_news">It looks like there are no news to display at the moment</string>
+    <string name="sort_news_by_published_date">Sort news by published date</string>
+    <string name="menu">Menu</string>
+    <string name="sort_published_date">Sort by published date</string>
 </resources>

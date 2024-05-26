@@ -7,23 +7,18 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.autolabschallenge.R
-import com.example.autolabschallenge.ui.composables.ShowArticleScreen
 import com.example.autolabschallenge.ui.composables.NewsListScreen
+import com.example.autolabschallenge.ui.composables.ShowArticleScreen
 import com.example.autolabschallenge.ui.composables.elements.SpeechButton
+import com.example.autolabschallenge.ui.composables.elements.TopBar
 import com.example.autolabschallenge.ui.theme.AutolabschallengeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,7 +34,7 @@ class ShowNewsActivity : ComponentActivity() {
             AutolabschallengeTheme {
                 Scaffold(
                     topBar = {
-                        ComposeAppBar(getString(R.string.news))
+                        TopBar(getString(R.string.news), viewModel)
                     },
                     floatingActionButton = {
                         SpeechButton(viewModel)
@@ -66,15 +61,4 @@ class ShowNewsActivity : ComponentActivity() {
         }
     }
 
-    @OptIn(ExperimentalMaterial3Api::class)
-    @Composable
-    fun ComposeAppBar(title: String) {
-        TopAppBar(
-            title = { Text(text = title) },
-            colors = TopAppBarDefaults.smallTopAppBarColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-                titleContentColor = Color.White
-            )
-        )
-    }
 }

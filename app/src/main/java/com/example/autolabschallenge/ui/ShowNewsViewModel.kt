@@ -6,12 +6,10 @@ import com.example.autolabschallenge.R
 import com.example.autolabschallenge.data.ResourceProvider
 import com.example.autolabschallenge.data.model.ArticlesModel
 import com.example.autolabschallenge.data.model.NewsModel
-import com.example.autolabschallenge.data.model.SourceModel
 import com.example.autolabschallenge.domain.useCase.GetNewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,9 +31,6 @@ class ShowNewsViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> get() = _isLoading
 
-    private val _voiceCommand = MutableStateFlow<String?>(null)
-    val voiceCommand: StateFlow<String?> get() = _voiceCommand
-
     suspend fun getNews() {
         viewModelScope.launch {
             _isLoading.value = true
@@ -54,11 +49,15 @@ class ShowNewsViewModel @Inject constructor(
 
     fun setVoiceCommand(voiceCommand: String) {
         viewModelScope.launch {
-            _voiceCommand.value = voiceCommand
             if (voiceCommand.equals("reload", ignoreCase = true)) {
                 getNews()
             }
         }
     }
 
+    fun sortNews() {
+        _newsList.value = _newsList.value?.copy(
+            articles = _newsList.value!!.articles?.sortedBy { it.publishedAt }
+        )
+    }
 }
