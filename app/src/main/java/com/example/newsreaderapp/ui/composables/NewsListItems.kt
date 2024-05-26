@@ -20,7 +20,7 @@ fun NewsListScreen(
     val isLoading by viewModel.isLoading.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.getNews()
+        viewModel.getNews(isFromVoiceCommand = false)
     }
 
     if (isLoading) {

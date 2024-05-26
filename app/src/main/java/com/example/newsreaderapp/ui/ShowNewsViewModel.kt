@@ -33,39 +33,30 @@ class ShowNewsViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> get() = _isLoading
 
-    suspend fun getNews() {
+    suspend fun getNews(isFromVoiceCommand: Boolean) {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                _newsList.value = getNewsUseCase()
+                _newsList.value = if (isFromVoiceCommand) {
+                    loadNewsUseCase()
+                } else {
+                    getNewsUseCase()
+                }
             } catch (e: Exception) {
                 _errorState.value = resourceProvider.getString(R.string.error_internet_connection)
             }
             _isLoading.value = false
         }
     }
-
-    private suspend fun loadNews() {
-        viewModelScope.launch {
-            _isLoading.value = true
-            try {
-                _newsList.value = loadNewsUseCase()
-            } catch (e: Exception) {
-                _errorState.value = resourceProvider.getString(R.string.error_internet_connection)
-            }
-            _isLoading.value = false
-        }
-    }
-
 
     fun setArticle(article: ArticlesModel) {
         _newsArticle.value = article
     }
 
-    fun setVoiceCommand(voiceCommand: String) {
+    fun setVoiceCommand(voiceCommand: String, isFromVoiceCommand: Boolean) {
         viewModelScope.launch {
             if (voiceCommand.equals("reload", ignoreCase = true)) {
-                loadNews()
+                getNews(isFromVoiceCommand = true)
             }
         }
     }

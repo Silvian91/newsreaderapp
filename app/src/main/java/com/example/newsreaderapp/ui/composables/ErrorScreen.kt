@@ -30,7 +30,7 @@ fun ErrorScreen(
         Text(text = errorText)
         Button(onClick = {
             coroutineScope.launch {
-                viewModel.getNews()
+                viewModel.getNews(isFromVoiceCommand = false)
             }
         }) {
             Text(stringResource(R.string.retry))

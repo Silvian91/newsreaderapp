@@ -37,7 +37,7 @@ fun SpeechButton(
     val context = LocalContext.current
     val speechRecognizerManager = remember {
         SpeechRecognizerManager(context) { voiceCommand ->
-            viewModel.setVoiceCommand(voiceCommand)
+            viewModel.setVoiceCommand(voiceCommand, isFromVoiceCommand = true)
         }
     }
     var permissionGranted by remember { mutableStateOf(false) }
