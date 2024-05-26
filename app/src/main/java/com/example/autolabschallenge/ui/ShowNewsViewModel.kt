@@ -27,6 +27,9 @@ class ShowNewsViewModel @Inject constructor(
     private val _newsArticle = MutableStateFlow<ArticlesModel?>(null)
     val newsArticle: StateFlow<ArticlesModel?> get() = _newsArticle
 
+    private val _errorState = MutableStateFlow<String?>(null)
+    val errorState: StateFlow<String?> get() = _errorState
+
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> get() = _isLoading
 
@@ -39,10 +42,9 @@ class ShowNewsViewModel @Inject constructor(
             try {
                 _newsList.value = getNewsUseCase()
             } catch (e: Exception) {
-                resourceProvider.getString(R.string.error_internet_connection)
+                _errorState.value = resourceProvider.getString(R.string.error_internet_connection)
             }
             _isLoading.value = false
-
         }
     }
 
