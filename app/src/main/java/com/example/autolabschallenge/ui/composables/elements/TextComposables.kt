@@ -7,14 +7,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ArticleTitle(title: String) {
+fun ArticleTitle(
+    source: String,
+    title: String
+) {
     Text(
-        title,
+        "$source: $title",
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(8.dp),
         fontWeight = FontWeight.Bold
@@ -44,6 +48,20 @@ fun ArticleScreenContent(content: String){
         style = TextStyle(
             color = Color.Black,
             fontSize = 18.0.sp
+        )
+    )
+}
+
+@Composable
+fun ArticleScreenSource(source: String) {
+    Text(
+        "Article source: $source",
+        modifier = Modifier
+            .padding(start = 12.dp, top = 8.dp, end = 12.dp),
+        style = TextStyle(
+            color = Color.Black,
+            fontSize = 14.0.sp,
+            fontStyle = FontStyle.Italic
         )
     )
 }

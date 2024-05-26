@@ -7,6 +7,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.autolabschallenge.ui.ShowNewsViewModel
 import com.example.autolabschallenge.ui.composables.elements.ArticleImage
 import com.example.autolabschallenge.ui.composables.elements.ArticleScreenContent
+import com.example.autolabschallenge.ui.composables.elements.ArticleScreenSource
 import com.example.autolabschallenge.ui.composables.elements.ArticleScreenTitle
 
 @Composable
@@ -20,6 +21,7 @@ fun ShowArticleScreen(
             article.urlToImage?.let {
                 ArticleImage(newsImageUrl = it)
             }
+            ArticleScreenSource(article.source.name)
             ArticleScreenTitle(article.title)
             ArticleScreenContent(article.content)
         }
