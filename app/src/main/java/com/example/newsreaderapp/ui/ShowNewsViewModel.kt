@@ -60,7 +60,7 @@ class ShowNewsViewModel @Inject constructor(
             }
         }
     }
-
+//
     fun sortNews() {
         _newsList.value = _newsList.value?.copy(
             articles = _newsList.value!!.articles?.sortedBy { it.publishedAt }
